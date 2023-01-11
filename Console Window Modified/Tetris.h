@@ -22,7 +22,7 @@ public:
 	Tetris();
 
 	virtual void render(TetrisRenderWindow& pWindow);
-	virtual void update(const int& pDeltaTime);
+	virtual bool update(int& pDeltaTime);
 
 	const int getPlayerScore() const { return mScore; }
 
@@ -34,6 +34,7 @@ private:
 	InputOptions mTetrisInputOptions;
 	vector<char> mTetrisBoard;
 	vector<wstring> mTetrominos;
+	vector<int> mLines;
 
 	int mNumTetrominosOnBoard;
 	int mScore;
@@ -42,6 +43,7 @@ private:
 	int mCurrentRotation;
 	int mCurrentX;
 	int mCurrentY;
+	int mPieceCount;
 
 	int mTetrominoFallSpeed;
 	bool mForceTetrominoDown;
