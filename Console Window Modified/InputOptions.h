@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------------------
 
 //--INCLUDES--//
-
+#include <windows.h>
 
 // -----------------------------------------------------------------------------
 
@@ -14,8 +14,26 @@ public:
 	InputOptions() {}
 
 	InputOptions(int pLeft, int pRight, int pDown, int pRotate, int pQuit, int pPause)
-		: mLeft(pLeft), mRight(pRight), mDown(pRight), mRotate(pRotate), mQuit(pQuit), mPause(pPause)
+		: mLeft(pLeft), mRight(pRight), mDown(pDown), mRotate(pRotate), mQuit(pQuit), mPause(pPause)
 	{}
+
+	int getKeyPress()
+	{
+		if (0x8000 & GetAsyncKeyState(mLeft))
+			return mLeft;
+		if (0x8000 & GetAsyncKeyState(mRight))
+			return mRight;
+		if (0x8000 & GetAsyncKeyState(mDown))
+			return mDown;
+		if (0x8000 & GetAsyncKeyState(mRotate))
+			return mRotate;
+		if (0x8000 & GetAsyncKeyState(mQuit))
+			return mQuit;
+		if (0x8000 & GetAsyncKeyState(mPause))
+			return mPause;
+
+		return 0;
+	}
 
 	void setLeft(int pLeft) { mLeft = pLeft; }
 	void setRight(int pRight) { pRight = pRight; }
@@ -24,7 +42,7 @@ public:
 	void setQuit(int pQuit) { mQuit = pQuit; }
 	void setPause(int pPause) { mPause = pPause; }
 
-private:
+//private:
 	int mLeft;
 	int mRight;
 	int mDown;
