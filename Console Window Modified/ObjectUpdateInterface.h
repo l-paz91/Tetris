@@ -15,7 +15,7 @@ public:
 	virtual ~ObjectUpdateInterface() {}
 
 	virtual void render(RenderWindowType& pWindow) = 0;
-	virtual void update(const TickType& pDeltaTime) = 0;
+	virtual bool update(TickType& pDeltaTime) = 0;
 };
 
 // -----------------------------------------------------------------------------
